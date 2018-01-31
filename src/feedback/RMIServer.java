@@ -5,7 +5,9 @@
  */
 package feedback;
 
+
 import java.net.MalformedURLException;
+
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -16,22 +18,27 @@ import java.util.ArrayList;
  *
  * @author 5im14anbui
  */
+
+
 public class RMIServer extends UnicastRemoteObject implements Feedback {
+
     private JSON json = new JSON();
 
     public RMIServer() throws RemoteException {
     }
 
     @Override
+
     public ArrayList<Picture> getFeedback(String keyword) throws RemoteException {
         json.getPictures(keyword);
         return getPics(keyword);
 
     }
-    
-    public void testJSON(){
+
+    public void testJSON() {
         json.getMap("Car");
-        for(Picture pic : json.getPictures("boy")) {
+        for (Picture pic : json.getPictures("boy")) {
+
             System.out.println(pic.getLink());
         }
     }
@@ -43,16 +50,16 @@ public class RMIServer extends UnicastRemoteObject implements Feedback {
      * @throws RemoteException
      */
     public ArrayList<Picture> getPics(String keyword) throws RemoteException {
+
         return json.getPictures(keyword);
 
     }
 
     public static void main(String[] args) {
-      
-        
+
         try {
-             
-             //impl.testJSON();
+
+            //impl.testJSON();
             LocateRegistry.createRegistry(1099);  // Use default Port 1099
             RMIServer impl = new RMIServer();
             String motdService = "JSON";
@@ -60,8 +67,9 @@ public class RMIServer extends UnicastRemoteObject implements Feedback {
 
         } catch (RemoteException e) {
             System.out.println("Could not start Registry"); // Kann auch bedeuten, dass die Registry schon läuft
+
         } catch (MalformedURLException exc) {
-            
+
         }
 
     }

@@ -32,8 +32,9 @@ import org.json.JSONObject;
 public class JSON {
 
     private JSONObject jsonobject;
-    private ArrayList<Picture> pictures = new ArrayList<>();
+    private final ArrayList<Picture> pictures = new ArrayList<>();
     public void getMap(String keyword) {
+        pictures.clear();
         // Create a trust manager that does not validate certificate chains like the default 
 
         TrustManager[] trustAllCerts = new TrustManager[]{

@@ -30,7 +30,6 @@ public class RMIServer extends UnicastRemoteObject implements Feedback {
     @Override
 
     public ArrayList<Picture> getFeedback(String keyword) throws RemoteException {
-        json.getPictures(keyword);
         return getPics(keyword);
 
     }
